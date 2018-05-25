@@ -9,12 +9,22 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    public List<Product> getProducts(){
-        return Arrays.asList(
-                new Product("Product 1", 1000),
-                new Product("Product 2", 2000),
-                new Product("Product 3", 3000)
-        );
+    private List<Product> productList = Arrays.asList(
+            new Product(1, "Product 1", 1000),
+            new Product(2, "Product 2", 2000),
+            new Product(3, "Product 3", 3000)
+    );
+
+    public List<Product> getProducts() {
+        return productList;
     }
 
+    public Product getProductById(int id) {
+        for (Product p : productList) {
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
+    }
 }
