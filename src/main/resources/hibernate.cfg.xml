@@ -1,0 +1,19 @@
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/shop</property>
+        <property name="hibernate.connection.username">shop</property>
+        <property name="hibernate.connection.password"></property>
+
+        <property name="hbm2ddl.auto">validate</property>
+
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+
+
+        <mapping class="am.aca.shop.domain.entity.Product"/>
+        <mapping class="am.aca.shop.domain.entity.ProductDescription"/>
+    </session-factory>
+</hibernate-configuration>
