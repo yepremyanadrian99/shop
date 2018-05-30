@@ -1,7 +1,10 @@
 package am.aca.shop.service;
 
+import am.aca.shop.domain.dto.CategoryDto;
 import am.aca.shop.domain.dto.ProductDto;
+import am.aca.shop.domain.entity.Category;
 import am.aca.shop.domain.entity.Product;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -43,5 +46,29 @@ public class CategoryService {
         Number number = (Number)sqlQuery.uniqueResult();
         session.close();
         return number;
+    }
+    public List<CategoryDto> getCategoriesTree(int startingId){
+        Session session = sessionFactory.openSession();
+        List<CategoryDto> categoryDtos = new ArrayList<CategoryDto>();
+
+         getCateory(0, categoryDtos, session);
+
+        //System.out.println(categoryDtos);
+        session.close();
+        return categoryDtos;
+    }
+
+    public void getCateory(int parentId,List<CategoryDto> categoryDtos,Session session){
+        List<Category> list1 = session.createQuery("SELECT c FROM Category c  WHERE c.parentId =:id")
+                .setParameter("id",parentId)
+                .list();
+        for (Category category :list1){
+            categoryDtos.add(new CategoryDto(category.getId(),category.getCategoryDescriptions().get(0).getName()));
+        }
+        for (CategoryDto categoryDto :categoryDtos){
+            categoryDto.setSubcategories(new ArrayList<CategoryDto>());
+
+            getCateory(categoryDto.getId(),categoryDto.getSubcategories(),session);
+        }
     }
 }

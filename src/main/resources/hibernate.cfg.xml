@@ -15,5 +15,8 @@
 
         <mapping class="am.aca.shop.domain.entity.Product"/>
         <mapping class="am.aca.shop.domain.entity.ProductDescription"/>
+
+        <mapping class="am.aca.shop.domain.entity.Category"/>
+        <mapping class="am.aca.shop.domain.entity.CategoryDescription"/>
     </session-factory>
 </hibernate-configuration>

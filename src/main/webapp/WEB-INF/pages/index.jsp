@@ -26,8 +26,13 @@
 
 
 <div class="sidebar">
-    <a href="/category/1/1">Phones</a>
+    <jsp:include page="blocks/sidebar.jsp">
+        <jsp:param name="categories" value="${categories}"/>
+    </jsp:include>
+
 </div>
+
+
 <div class="listing">
     <c:forEach items="${products}" var="product">
         <p>${product.name} ------ ${product.price}</p>

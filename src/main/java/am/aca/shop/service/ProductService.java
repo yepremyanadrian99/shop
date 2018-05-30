@@ -23,7 +23,7 @@ public class ProductService {
     );
 
     public List<ProductDto> getProducts() {
-        getProducts(1,1);
+       // getProducts(1,1);
         return productList;
     }
     public List<Product> getProducts(int from,int to){
