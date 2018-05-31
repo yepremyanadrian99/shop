@@ -29,7 +29,7 @@ public class MainController {
     public ModelAndView index() {
         List<CategoryDto> categoriesTree = categoryService.getCategoriesTree(0);
 
-        ModelAndView modelAndView = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("home/index");
         modelAndView.addObject("products", productService.getProducts());
         modelAndView.addObject("categories", categoriesTree);
         return modelAndView;

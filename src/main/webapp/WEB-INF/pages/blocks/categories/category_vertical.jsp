@@ -4,11 +4,11 @@
     <c:forEach items="${categories}" var="category">
         <li>
             <a href="/category/${category.id}/1">${category.name}</a>
-            <%--<c:if test="${category.subcategories.size()>0}">--%>
-                <%--<jsp:include page="/WEB-INF/pages/blocks/categories/category_vertical1.jsp">--%>
-                    <%--<jsp:param name="categoriessub" value="${category.subcategories}"/>--%>
-                <%--</jsp:include>--%>
-            <%--</c:if>--%>
+            <c:if test="${category.subcategories.size()>0}">
+                <jsp:include page="/WEB-INF/pages/blocks/categories/category_vertical1.jsp">
+                    <jsp:param name="categoriessub" value="${category.subcategories}"/>
+                </jsp:include>
+            </c:if>
         </li>
     </c:forEach>
 </ul>
