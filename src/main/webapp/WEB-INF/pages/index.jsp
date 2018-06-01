@@ -4,14 +4,16 @@
 <head>
     <title>Title</title>
     <style>
-        .nav-bar{
+        .nav-bar {
             width: 100%;
         }
-        .sidebar{
+
+        .sidebar {
             width: 30%;
             float: left;
         }
-        .listing{
+
+        .listing {
             width: 70%;
             float: left;
         }
@@ -20,8 +22,8 @@
 <body>
 <div class="nav-bar">
     <label>Product Id</label>
-    <input id="productId" type="text"/>
-    <input type="submit" value="Search"/>
+    <input id="searchTextBox" type="text"/>
+    <input id="searchButton" type="button" value="Search" onclick="buttonSearchClick()"/>
 </div>
 
 
@@ -35,20 +37,24 @@
 
 <div class="listing">
     <c:forEach items="${products}" var="product">
-        <p>${product.name} ------ ${product.price}</p>
+        <p>--------------------</p>
+        <p>ID</p>
+        <p>${product.id}</p>
+        <p>Name</p>
+        <p>${product.name}</p>
+        <p>Price</p>
+        <p>${product.price}</p>
+        <p>--------------------</p>
     </c:forEach>
 </div>
 
 
-
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#btnSubmit").click(function () {
-            url = "localhost:8080/рroduct?id=1";
-            $(location).attr("href", url);
-        });
-    });
+<script language="JavaScript">
+    function buttonSearchClick() {
+        var searchParam = document.getElementById("searchTextBox").value;
+        window.location.href = "http://localhost:8080/?search=" + searchParam;
+    }
 </script>
 </body>
 </html>

@@ -4,13 +4,16 @@ public class ProductDto {
 
     private int id;
     private String name;
-    private String price;
+    private double price;
 
-    public ProductDto(int id, String name, String price) {
+    public ProductDto() {
+
+    }
+
+    public ProductDto(int id, String name, Double price) {
         this.id = id;
         this.name = name;
         this.price = price;
-
     }
 
     public int getId() {
@@ -29,11 +32,11 @@ public class ProductDto {
         this.name = name;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }

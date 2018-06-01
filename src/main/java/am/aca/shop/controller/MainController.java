@@ -1,6 +1,5 @@
 package am.aca.shop.controller;
 
-import am.aca.shop.domain.dto.CategoryDto;
 import am.aca.shop.service.CategoryService;
 import am.aca.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,29 +8,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/")
 public class MainController {
 
     @Autowired
-    private  ProductService productService;
+    private ProductService productService;
     @Autowired
     private CategoryService categoryService;
 
 
-//    public MainController(ProductService productService) {
-//        this.productService = productService;
-//    }
-
     @RequestMapping("/")
-    public ModelAndView index() {
-        List<CategoryDto> categoriesTree = categoryService.getCategoriesTree(0);
-
+    public ModelAndView index(@RequestParam(value = "search", required = false) String searchParam) {
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("products", productService.getProducts());
-        modelAndView.addObject("categories", categoriesTree);
+        //List<CategoryDto> categoriesTree = categoryService.getCategoriesTree(0);
+        if(searchParam != null && searchParam != "") {
+            modelAndView.addObject("products", productService.searchProduct(searchParam));
+        }
+        else {
+            modelAndView.addObject("products", productService.getProductDtos());
+        }
+        //modelAndView.addObject("categories", categoriesTree);
         return modelAndView;
     }
 

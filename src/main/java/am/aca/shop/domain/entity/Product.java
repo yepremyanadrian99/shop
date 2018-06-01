@@ -10,21 +10,32 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @Column(name = "price")
     private double price;
-    //TODO connect to Entity
     @Column(name = "user_id")
     private int userId;
-
-    //TODO connect to Entity
     @Column(name = "category_id")
     private int categoryId;
-
+    @Column(name = "status")
     private int status;
-
-
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     private List<ProductDescription> productDescription;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public int getUserId() {
         return userId;
@@ -48,37 +59,6 @@ public class Product {
 
     public void setProductDescription(List<ProductDescription> productDescription) {
         this.productDescription = productDescription;
-    }
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public int getUser_id() {
-        return userId;
-    }
-
-    public void setUser_id(int userId) {
-        this.userId = userId;
-    }
-
-    public int getCategory_id() {
-        return categoryId;
-    }
-
-    public void setCategory_id(int category_id) {
-        this.categoryId = category_id;
     }
 
     public int getStatus() {

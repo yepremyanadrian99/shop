@@ -1,5 +1,7 @@
 package am.aca.shop.domain.entity;
 
+import am.aca.shop.service.ProductService;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,15 +9,20 @@ import javax.persistence.*;
 public class ProductDescription {
     @Id
     private int id;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
-
+    @Column(name = "product_id", insertable = false, updatable = false)
+    private int productId;
+    @Column(name = "name")
     private String name;
+    @Column(name = "description")
     private String description;
     @Column(name = "lang_id")
     private int langId;
+    @ManyToOne
+    private Product product;
+
+    public ProductDescription() {
+        product = new ProductService().getProductById(productId);
+    }
 
     public int getId() {
         return id;
@@ -57,7 +64,7 @@ public class ProductDescription {
         description = description;
     }
 
-    public int getLang_id() {
+    public long getLang_id() {
         return langId;
     }
 
