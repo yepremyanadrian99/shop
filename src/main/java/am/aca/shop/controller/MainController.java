@@ -20,15 +20,15 @@ public class MainController {
 
     @RequestMapping("/")
     public ModelAndView index(@RequestParam(value = "search", required = false) String searchParam) {
-        ModelAndView modelAndView = new ModelAndView("index");
-        //List<CategoryDto> categoriesTree = categoryService.getCategoriesTree(0);
-        if(searchParam != null && searchParam != "") {
-            modelAndView.addObject("products", productService.searchProduct(searchParam));
+        ModelAndView modelAndView = new ModelAndView("home/index");
+        List<CategoryDto> categoriesTree = categoryService.getCategoriesTree(0);
+        if (searchParam != null && searchParam != "") {
+          modelAndView.addObject("products", productService.searchProduct(searchParam));
         }
         else {
-            modelAndView.addObject("products", productService.getProductDtos());
+          modelAndView.addObject("products", productService.getProducts());
         }
-        //modelAndView.addObject("categories", categoriesTree);
+        modelAndView.addObject("categories", categoriesTree);
         return modelAndView;
     }
 

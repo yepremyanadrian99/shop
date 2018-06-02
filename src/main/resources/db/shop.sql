@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2018 at 08:39 PM
+-- Generation Time: Jun 02, 2018 at 12:40 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -32,6 +32,7 @@ DROP DATABASE IF EXISTS shop;
 CREATE DATABASE shop;
 USE shop;
 
+DROP TABLE IF EXISTS `categories`;
 
 CREATE TABLE `categories` (
   `id`        mediumint(8) UNSIGNED NOT NULL,
@@ -406,6 +407,7 @@ INSERT INTO `categories` (`id`, `parent_id`, `id_path`, `level`, `status`, `posi
 -- Table structure for table `category_descriptions`
 --
 
+DROP TABLE IF EXISTS `category_descriptions`;
 CREATE TABLE `category_descriptions` (
   `id`          int(11)               NOT NULL,
   `category_id` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
@@ -778,6 +780,7 @@ INSERT INTO `category_descriptions` (`id`, `category_id`, `name`, `description`,
 -- Table structure for table `images`
 --
 
+DROP TABLE IF EXISTS `images`;
 CREATE TABLE `images` (
   `id`         int(11)      NOT NULL,
   `url`        varchar(255) NOT NULL,
@@ -802,6 +805,7 @@ INSERT INTO `images` (`id`, `url`, `product_id`) VALUES
 -- Table structure for table `languages`
 --
 
+DROP TABLE IF EXISTS `languages`;
 CREATE TABLE `languages` (
   `id`   int(11)                        NOT NULL,
   `code` varchar(5) CHARACTER SET utf8  NOT NULL,
@@ -825,6 +829,7 @@ INSERT INTO `languages` (`id`, `code`, `name`) VALUES
 -- Table structure for table `products`
 --
 
+DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id`          int(11) NOT NULL,
   `price`       double  NOT NULL,
@@ -866,6 +871,7 @@ INSERT INTO `products` (`id`, `price`, `user_id`, `category_id`, `status`) VALUE
 -- Table structure for table `product_descriptions`
 --
 
+DROP TABLE IF EXISTS `product_descriptions`;
 CREATE TABLE `product_descriptions` (
   `id`          int(11)                         NOT NULL,
   `product_id`  int(11)                         NOT NULL,
@@ -925,6 +931,7 @@ INSERT INTO `product_descriptions` (`id`, `product_id`, `name`, `description`, `
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id`           int(11)                         NOT NULL,
   `first_name`   varchar(255) CHARACTER SET utf8 NOT NULL,
